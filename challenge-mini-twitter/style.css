@@ -1,0 +1,63 @@
+/* Please note: the CSS that I used for this challenge is based upon 
+1-todo-list of JavaScript-Core-2-Coursework-Week3-London8;
+hence the similarities */
+
+:root {
+  --cool-gray-9C: #657786;
+  --twitter-blue: #1da1f2;
+}
+
+body {
+  background-image: url(assets/twitter1.png);
+  background-repeat: repeat;
+}
+
+.styleHeading {
+  font-family: "Arial Bold", Gadget, sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+  margin: auto;
+}
+
+.container {
+  margin-top: 150px;
+  /*width: 90%;*/
+}
+
+.tweet-header {
+  border-style: solid;
+  background-color: var(--twitter-blue);
+  color: white;
+  border-radius: 25px;
+  padding: 0.5em 1em;
+}
+
+/* nnn Characters Remaining */
+.remaining {
+  color: var(--cool-gray-9C);
+  font-size: 24px;
+  padding: 4px 4px;
+}
+
+.scroll {
+  /*
+         width: 600px;
+        height: 150px;
+        overflow: auto;*/
+
+  width: 600px;
+  height: 600px;
+  padding: 20px;
+  /* BEFORE overflow-y: scroll */
+  overflow-y: auto;
+}
+/* I added the following */
+
+.normalText {
+  text-decoration: none;
+}
+
+.strikeThrough {
+  text-decoration: line-through;
+}

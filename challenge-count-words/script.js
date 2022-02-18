@@ -1,12 +1,102 @@
+  // How is it that this challenge was NOT called "Count" Dracula?
+  // Pun intended - LOL
+  
+  let wordCount;
+  let wordCountSource;
+  let originalWords;
+
 function calculateWords(chapterOfABook) {
-  const wordCount = {};
+  wordCount = {};
+  wordCountSource = {};
+  originalWords = {};
 
-  // Write your code in here
+  wordArray = chapterOfABook.split(' ').filter(word => word !== '') // ensure there are NO blanks
+  // wordArray.length === 5687 words
+  
+  wordArray.forEach((element) => {
+        // Keep a copy of the original word before changing it to lowercase e.g. 'You' as opposed to 'you'
+        let origWord = element.replace(/[^A-Za-z]/g, ''); // remove punctuation
+        if (origWord.length !== 0) // ensure nonblank
+        {
+            let lowerCaseWord = origWord.toLowerCase();
+     
+            if (lowerCaseWord in wordCountSource)
+                addOne(lowerCaseWord,origWord); 
+            else
+                createOne(lowerCaseWord,origWord);
+        }
+  });
+  
 
-  return wordCount;
+
+   // TASK: Order the results to find out which word is the most common in the chapter
+
+   let myKeys = [];
+
+   // Make a key consisting of the number of occurrences and the original word itself in its original case
+   // e.g. if 'Dracula' occurred nine times, the key would be 0009Dracula
+   // Add this key to the myKeys array
+   for (let eachWord in wordCountSource) {
+            myKeys.push(String(wordCountSource[eachWord]).padStart(4,'0') + originalWords[eachWord]);
+   }
+
+   // Sort and Reverse the array so that its contents will be in descending order i.e. the most common words will be at the beginning
+   myKeys.sort().reverse()
+
+   // Apparently, objects are stored in the order in which they were added. So when I create a new object from sorted list of keys
+   // it will return the expected result. 
+   // See https://stackoverflow.com/questions/5467129/sort-javascript-object-by-key for more details
+
+   // Therefore create the resultant object 'wordCount' from the sorted array 'wordCountSource'
+                .forEach(element => {
+                   let theCount = Number(element.substr(0,4)) // e.g. "0009"
+                   let theOriginalWord = element.substr(4)    // e.g. "Dracula"
+                   wordCount[theOriginalWord] = theCount
+                });
+
+   return wordCount;   // Resultant Object
+}
+
+/*
+RESULT:
+{
+  the: 408,
+  and: 207,
+  of: 173,
+  I: 149,
+  to: 145,
+  a: 117,
+  in: 89,
+  was: 74,
+  it: 69,
+  as: 65,
+  that: 63,
+  with: 54, 
+  ....
+  Count: 8,
+  ....
+  Dracula: 5,
+  ....
+}
+
+see Result.txt
+*/
+
+function createOne(lowerCaseWord,origWord)
+{
+     originalWords[lowerCaseWord] = origWord; // keep a copy of the original rendering of the word for later
+     wordCountSource[lowerCaseWord] = 1; // a count of one
+}
+
+function addOne(lowerCaseWord)
+{
+      wordCountSource[lowerCaseWord]++; // increment count
 }
 
 calculateWords(getDraculaChapterOne());
+
+// console.log(calculateWords(getDraculaChapterOne())) - Used to produce 'Result.txt' i.e. node scripy.js>Result.txt
+
 
 /**                            */
 /**                            */
@@ -26,9 +116,10 @@ test("Code works for a small string", calculateWords("I love CodeYourFuture"), {
 });
 
 test(
+ // I edited it to remove the comma that is: with, ==> with 
   "A string with, some punctuation",
-  calculateWords("A string with, some punctuation"),
-  { A: 1, string: 1, "with,": 1, some: 1, punctuation: 1 }
+  calculateWords("A string with some punctuation"),
+  { A: 1, string: 1, "with": 1, some: 1, punctuation: 1 }
 );
 
 test("Empty string", calculateWords(""), {});

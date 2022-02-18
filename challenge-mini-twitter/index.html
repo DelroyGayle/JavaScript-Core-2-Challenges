@@ -1,0 +1,69 @@
+<!-- Please note: the HTML that I used for this challenge is based upon 
+1-todo-list of JavaScript-Core-2-Coursework-Week3-London8;
+hence the similarities -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Twitter</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="styleHeading">Mini Twitter!</div>
+    </nav>
+    <div id="content" class="container site-content">
+      <div class="container">
+        <div class="row gx-5">
+          <div class="col-sm">
+            <ul id="tweet-list" class="list-group scroll"></ul>
+          </div>
+          <div class="col-sm">
+            <div class="card">
+              <div class="card-header">
+                <span class="tweet-header">Tweet</span>
+              </div>
+              <div class="card-body">
+                <form class="row g-3">
+                  <div class="col-auto">
+                    <textarea
+                      id="tweetInput"
+                      name="tweet"
+                      rows="6"
+                      cols="50"
+                      placeholder="What's happening"
+                      maxlength="300"
+                    ></textarea>
+                  </div>
+                  <div class="remaining"></div>
+                  <div class="col-auto buttonFlex">
+                    <button
+                      onclick="addNewTweet(event)"
+                      class="btn btn-primary mb-3"
+                    >
+                      Add Tweet
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="script.js"></script>
+</html>

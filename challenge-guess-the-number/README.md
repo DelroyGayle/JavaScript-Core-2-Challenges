@@ -16,7 +16,7 @@ https://waba-tron.github.io/Guess-The-Number-Game/Hi-lo.html
 
 ## Installation
 
-Fork this repository and then open in VSCode. To view the website, open index.html in a browser.
+To view the website, open index.html in a browser.
 
 ## Prior Knowledge
 
